@@ -34,7 +34,7 @@ def hit?(card_total)
   action = get_user_input
     if action == "h"
       card_total += deal_card
-      puts "you total is now #{card_total}"
+      puts "your total is now #{card_total}"
     elsif action == "s"
     elsif action != "h" && action != "s"
       invalid_command
@@ -56,8 +56,8 @@ def runner
   card_total = initial_round
   until card_total > 21 do
     hit?(card_total)
-    return(card_total)
     display_card_total(card_total)
+    return(card_total)
   end
   end_game(card_total)
 end
