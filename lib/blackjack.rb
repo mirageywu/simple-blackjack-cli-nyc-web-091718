@@ -34,6 +34,7 @@ def hit?(card_total)
   action = get_user_input
     if action == "h"
       card_total += deal_card
+      puts "#{card_total}"
     elsif action == "s"
     elsif action != "h" && action != "s"
       invalid_command
