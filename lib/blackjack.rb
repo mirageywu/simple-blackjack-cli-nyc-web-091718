@@ -6,8 +6,8 @@ def deal_card
   rand(1..11)
 end
 
-def display_card_total(card_total)
-  puts "Your cards add up to #{card_total}"
+def display_card_total($card_total)
+  puts "Your cards add up to #{$card_total}"
 end
 
 def prompt_user
@@ -18,30 +18,28 @@ def get_user_input
   gets.chomp
 end
 
-def end_game(card_total)
+def end_game($card_total)
   puts "Sorry, you hit #{card_total}. Thanks for playing!"
 end
 
 def initial_round
-  card_total = deal_card
-  card_total += deal_card
-  display_card_total(card_total)
-  return(card_total)
+  $card_total = deal_card
+  $card_total += deal_card
+  display_card_total($card_total)
+  return($card_total)
 end
 
-def hit?(card_total)
+def hit?($card_total)
   prompt_user
   action = get_user_input
     if action == "h"
-      card_total += deal_card
-      return(card_total)
+      $card_total += deal_card
     elsif action == "s"
-      return(card_total)
     elsif action != "h" && action != "s"
       invalid_command
       prompt_user
-      return(card_total)
     end
+    return($card_total)
 end
 
 def invalid_command
@@ -54,12 +52,11 @@ end
 
 def runner
   welcome
-  card_total = initial_round
-  until card_total > 21 do
-    hit?(card_total)
-    return(card_total)
-    display_card_total(card_total)
-    return(card_total)
+  $card_total = initial_round
+  until $card_total > 21 do
+    hit?($card_total)
+    display_card_total($card_total)
+    return($card_total)
   end
-  end_game(card_total)
+  end_game($card_total)
 end
